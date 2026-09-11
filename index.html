@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>واسبي WSPY - منصة ألعاب احترافية</title>
+    <!-- SEO -->
+    <meta name="description" content="واسبي WSPY: منصة ألعاب متكاملة تضم أجمل الألعاب. استمتع بتجربة فريدة.">
+    <meta name="keywords" content="ألعاب, واسبي, wspy, ألعاب مجانية, ألعاب أكشن, ألعاب ذكاء">
+    <meta name="author" content="WSPY">
+    <meta property="og:title" content="واسبي WSPY - منصة ألعاب">
+    <meta property="og:description" content="اكتشف عالم الألعاب مع واسبي.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://wspy.org">
+    <link rel="canonical" href="https://wspy.org/">
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+        
+</head>
+<body>
+    <div class="app">
+        <!-- ===== الهيدر الكبير (النصف الأيمن) ===== -->
+        <header class="hero-header" role="banner">
+            <div class="hero-content">
+                <!-- الصف العلوي: لوجو + زر الوضع -->
+                <div class="hero-top">
+                    <div class="hero-logo">
+                        <i class="fas fa-gamepad"></i>
+                        <span>واسبي <span class="highlight">WSPY</span></span>
+                    </div>
+                    <button class="theme-toggle" id="themeToggle" aria-label="تبديل الوضع الليلي والنهاري">
+                        <i class="fas fa-moon" id="themeIcon"></i>
+                        <span class="toggle-label" id="themeLabel">ليلي</span>
+                    </button>
+                </div>
+
+                <h1 class="hero-title">
+                    منصة <span class="accent">الألعاب</span> <br>الاحترافية
+                </h1>
+                <p class="hero-desc">
+                    اكتشف مجموعتنا المتنوعة من الألعاب الممتعة واختر ما يناسبك.
+                </p>
+
+                <!-- شريط بحث -->
+                <div class="hero-search" role="search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="ابحث عن لعبة..." aria-label="بحث">
+                    <button id="searchBtn" aria-label="بحث"><i class="fas fa-arrow-left"></i> بحث</button>
+                </div>
+
+                <div class="hero-stats">
+                    <div><i class="fas fa-gamepad"></i> 200+ لعبة</div>
+                    <div><i class="fas fa-users"></i> 10k+ لاعب</div>
+                    <div><i class="fas fa-star"></i> 4.8 تقييم</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ===== القسم الرئيسي ===== -->
+        <main class="main-content" role="main">
+            <div class="main-header">
+                <h2>🎮 أحدث الألعاب</h2>
+                <div class="filter-tabs">
+                    <span class="active" data-filter="all">الكل</span>
+                    <span data-filter="ألغاز">ألغاز</span>
+                    <span data-filter="سباقات">سباقات</span>
+                    <span data-filter="مغامرات">مغامرات</span>
+                    <span data-filter="رياضة">رياضة</span>
+                    <span data-filter="مكافأت">مكافأت</span>
+                </div>
+            </div>
+
+            <div class="games-grid" id="gamesGrid"></div>
+            <div class="no-results" id="noResults">
+                <i class="fas fa-frown" style="font-size:2.5rem; margin-bottom:0.5rem;"></i>
+                <p>لا توجد ألعاب تطابق بحثك</p>
+            </div>
+
+            <!-- التذييل -->
+            <footer>
+                <div class="footer-inner">
+                    <div class="footer-brand">
+                        <i class="fas fa-gamepad"></i>
+                        <span>واسبي WSPY</span>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#"><i class="fas fa-info-circle"></i> عن</a>
+                        <a href="#"><i class="fas fa-envelope"></i> تواصل</a>
+                        <a href="#"><i class="fas fa-shield-alt"></i> سياسة</a>
+                    </div>
+                </div>
+                <div class="footer-copy">
+                    &copy; 2026 <strong>wspy.org</strong> — جميع الحقوق محفوظة. صمم بحب ♥
+                </div>
+            </footer>
+        </main>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
