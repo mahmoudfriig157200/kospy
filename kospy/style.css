@@ -1,0 +1,964 @@
+/* ==========================================================================
+   KOSPY.SITE — Dark Gaming UI Stylesheet
+   Version: 1.0.0
+   Author: Kospy Design System
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Custom Properties / Variables
+   -------------------------------------------------------------------------- */
+:root {
+    --font-family: 'Cairo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    /* Color Palette */
+    --bg-dark: #090a0f;
+    --bg-surface: #12151e;
+    --bg-surface-card: #161a26;
+    --bg-surface-hover: #1e2436;
+
+    --accent-purple: #7c3aed;
+    --accent-purple-light: #a78bfa;
+    --accent-purple-glow: rgba(124, 58, 237, 0.35);
+
+    --accent-cyan: #06b6d4;
+    --accent-cyan-glow: rgba(6, 182, 212, 0.35);
+
+    --accent-pink: #f43f5e;
+    --accent-green: #10b981;
+    --accent-orange: #f97316;
+
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+
+    --border-color: rgba(255, 255, 255, 0.08);
+    --border-color-glow: rgba(124, 58, 237, 0.5);
+
+    /* Spacing & Sizes */
+    --container-max-width: 1200px;
+    --header-height: 76px;
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --radius-full: 9999px;
+
+    /* Transitions & Shadows */
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow-glow: 0 0 25px rgba(124, 58, 237, 0.25);
+    --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset & General Setup
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+    background: #262b3d;
+    border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-purple);
+}
+
+/* Container */
+.container {
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+/* --------------------------------------------------------------------------
+   3. Dynamic Background Effects
+   -------------------------------------------------------------------------- */
+.bg-glow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(140px);
+    opacity: 0.22;
+    animation: floatOrb 18s ease-in-out infinite alternate;
+}
+
+.orb-1 {
+    top: -10%;
+    right: 15%;
+    width: 500px;
+    height: 500px;
+    background: var(--accent-purple);
+}
+
+.orb-2 {
+    top: 40%;
+    left: 10%;
+    width: 450px;
+    height: 450px;
+    background: var(--accent-cyan);
+    animation-delay: -7s;
+}
+
+.grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%);
+}
+
+@keyframes floatOrb {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(40px, 30px) scale(1.1); }
+    100% { transform: translate(-30px, -20px) scale(0.95); }
+}
+
+/* --------------------------------------------------------------------------
+   4. Header & Navigation
+   -------------------------------------------------------------------------- */
+.main-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--header-height);
+    background: rgba(9, 10, 15, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.logo-icon {
+    font-size: 1.8rem;
+    filter: drop-shadow(0 0 10px rgba(124, 58, 237, 0.6));
+    animation: pulseIcon 3s ease-in-out infinite alternate;
+}
+
+.logo-text {
+    font-size: 1.6rem;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    color: var(--text-primary);
+}
+
+.logo-dot {
+    color: var(--accent-cyan);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-link {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    position: relative;
+    padding: 0.4rem 0;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--text-primary);
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));
+    border-radius: var(--radius-full);
+}
+
+.btn-header-glow {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.6rem 1.4rem;
+    background: rgba(124, 58, 237, 0.15);
+    border: 1px solid rgba(124, 58, 237, 0.4);
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: var(--radius-full);
+    transition: var(--transition-normal);
+}
+
+.btn-header-glow:hover {
+    background: var(--accent-purple);
+    box-shadow: 0 0 20px var(--accent-purple-glow);
+    transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   5. Hero Section (Balanced Proportional Design)
+   -------------------------------------------------------------------------- */
+.hero-section {
+    padding: 2.5rem 0 1rem 0;
+    text-align: center;
+    position: relative;
+}
+
+.hero-logo-wrapper {
+    margin-bottom: 0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-site-logo {
+    max-width: 195px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 25px rgba(124, 58, 237, 0.5));
+    transition: transform var(--transition-normal), filter var(--transition-normal);
+}
+
+.hero-site-logo:hover {
+    transform: scale(1.04);
+    filter: drop-shadow(0 0 35px rgba(6, 182, 212, 0.65));
+}
+
+.hero-brand-logo .logo-text {
+    font-size: 2rem;
+}
+
+.hero-content {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: var(--accent-green);
+    padding: 0.3rem 0.95rem;
+    border-radius: var(--radius-full);
+    font-size: 0.82rem;
+    font-weight: 700;
+    margin-bottom: 0.65rem;
+}
+
+.badge-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-green);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent-green);
+    animation: blinkDot 1.5s infinite;
+}
+
+@keyframes blinkDot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.hero-title {
+    font-size: 2.2rem;
+    font-weight: 900;
+    line-height: 1.25;
+    margin-bottom: 0.45rem;
+    color: var(--text-primary);
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--accent-purple-light) 0%, var(--accent-cyan) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-description {
+    font-size: 1.02rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-bottom: 1.1rem;
+    max-width: 640px;
+}
+
+/* Search Box Component */
+.search-box-wrapper {
+    width: 100%;
+    max-width: 650px;
+}
+
+.search-form {
+    position: relative;
+    width: 100%;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: rgba(18, 21, 30, 0.85);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 0.35rem 1rem;
+    backdrop-filter: blur(12px);
+    transition: var(--transition-normal);
+    box-shadow: var(--shadow-card);
+}
+
+.input-group:focus-within {
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 20px var(--accent-purple-glow);
+    background: var(--bg-surface-card);
+}
+
+.search-icon {
+    display: flex;
+    align-items: center;
+    color: var(--text-muted);
+    margin-left: 0.7rem;
+}
+
+.input-group:focus-within .search-icon {
+    color: var(--accent-purple-light);
+}
+
+#gameSearchInput {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: var(--font-family);
+    padding: 0.65rem 0;
+}
+
+#gameSearchInput::placeholder {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.clear-btn {
+    font-size: 1.3rem;
+    color: var(--text-muted);
+    padding: 0 0.4rem;
+    transition: var(--transition-fast);
+}
+
+.clear-btn:hover {
+    color: var(--accent-pink);
+}
+
+/* Quick Filter Tags */
+.quick-tags {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.7rem;
+}
+
+.tags-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.tag-btn {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 0.3rem 0.8rem;
+    border-radius: var(--radius-full);
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: var(--transition-fast);
+}
+
+.tag-btn:hover {
+    background: rgba(124, 58, 237, 0.15);
+    border-color: rgba(124, 58, 237, 0.4);
+    color: var(--text-primary);
+    transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   Section Separator (Hero -> Games)
+   -------------------------------------------------------------------------- */
+.angled-divider-top {
+    position: absolute;
+    top: -29px;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    overflow: hidden;
+    line-height: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.angled-divider-top svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 -3px 8px rgba(124, 58, 237, 0.4));
+}
+
+/* --------------------------------------------------------------------------
+   6. Games Grid Section (Section 2)
+   -------------------------------------------------------------------------- */
+.games-section {
+    background-color: #121624;
+    padding: 0.85rem 0 4.5rem 0;
+    position: relative;
+    margin-top: 30px;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: inset 0 20px 30px -15px rgba(0, 0, 0, 0.5);
+}
+
+.section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.3rem;
+}
+
+.section-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.games-count-badge {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    padding: 0.4rem 1rem;
+    border-radius: var(--radius-full);
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+.games-count-badge span {
+    color: var(--accent-cyan);
+}
+
+/* Responsive CSS Grid */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Circular Gaming Card Item */
+.game-card {
+    background: #181d2e;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+    padding: 1.1rem 1rem 0.95rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: var(--transition-normal);
+    position: relative;
+    box-shadow: var(--shadow-card);
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--border-color-glow);
+    box-shadow: 0 12px 30px -8px rgba(124, 58, 237, 0.35);
+}
+
+/* Larger Circular Image Container */
+.card-banner {
+    position: relative;
+    width: 148px;
+    height: 148px;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-image-wrapper {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--accent-purple);
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.45);
+    background: #0d101a;
+    position: relative;
+}
+
+.card-game-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--transition-normal);
+}
+
+.game-card:hover .card-game-img {
+    transform: scale(1.08);
+}
+
+.game-img-placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    transition: var(--transition-normal);
+}
+
+.ff-bg {
+    background: linear-gradient(135deg, #e65100 0%, #bf360c 60%, #1a0800 100%);
+}
+
+.pubg-bg {
+    background: linear-gradient(135deg, #ff6f00 0%, #4e342e 60%, #0d0907 100%);
+}
+
+.roblox-bg {
+    background: linear-gradient(135deg, #d50000 0%, #37474f 60%, #0f1416 100%);
+}
+
+.fortnite-bg {
+    background: linear-gradient(135deg, #6a1b9a 0%, #283593 60%, #090b1c 100%);
+}
+
+.mc-bg {
+    background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 60%, #081a09 100%);
+}
+
+.gta-bg {
+    background: linear-gradient(135deg, #c2185b 0%, #4a148c 60%, #0f051c 100%);
+}
+
+.game-logo-icon {
+    font-size: 2.2rem;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+}
+
+.game-code-name {
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: #ffffff;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+    text-transform: uppercase;
+}
+
+/* Badges */
+.card-badge {
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    padding: 0.2rem 0.65rem;
+    border-radius: var(--radius-full);
+    font-size: 0.7rem;
+    font-weight: 800;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    z-index: 2;
+}
+
+.badge-popular {
+    background: var(--accent-orange);
+    color: #fff;
+}
+
+.badge-hot {
+    background: var(--accent-pink);
+    color: #fff;
+}
+
+.badge-new {
+    background: var(--accent-cyan);
+    color: #000;
+}
+
+.badge-trending {
+    background: var(--accent-purple);
+    color: #fff;
+}
+
+.badge-creative {
+    background: var(--accent-green);
+    color: #fff;
+}
+
+/* Horizontal Split Line */
+.card-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+    margin: 0.45rem 0;
+}
+
+/* Body & Footer */
+.card-body {
+    padding: 0.15rem 0 0.15rem 0;
+    width: 100%;
+}
+
+.game-name {
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin: 0 0 0.1rem 0;
+    color: var(--text-primary);
+}
+
+.card-footer {
+    width: 100%;
+    padding: 0;
+    border-top: none;
+}
+
+.btn-entry {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding: 0.75rem 0;
+    background: linear-gradient(135deg, var(--accent-purple) 0%, #5b21b6 100%);
+    color: var(--text-primary);
+    font-weight: 800;
+    font-size: 1rem;
+    border-radius: var(--radius-md);
+    transition: var(--transition-normal);
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+}
+
+.btn-entry:hover {
+    background: linear-gradient(135deg, #8b5cf6 0%, var(--accent-purple) 100%);
+    box-shadow: 0 6px 20px var(--accent-purple-glow);
+}
+
+.btn-arrow {
+    transition: transform var(--transition-fast);
+}
+
+.btn-entry:hover .btn-arrow {
+    transform: translateX(-4px);
+}
+
+.disabled-entry {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid var(--border-color);
+    color: var(--text-muted) !important;
+    box-shadow: none !important;
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.65;
+}
+
+/* No Results Container */
+.no-results-box {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--bg-surface-card);
+    border: 1px dashed var(--border-color);
+    border-radius: var(--radius-lg);
+    margin-top: 1rem;
+}
+
+.no-results-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    opacity: 0.6;
+}
+
+.no-results-box h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.no-results-box p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.btn-reset-search {
+    background: var(--accent-purple);
+    color: var(--text-primary);
+    font-weight: 700;
+    padding: 0.6rem 1.5rem;
+    border-radius: var(--radius-full);
+    transition: var(--transition-fast);
+}
+
+.btn-reset-search:hover {
+    box-shadow: 0 0 15px var(--accent-purple-glow);
+}
+
+/* --------------------------------------------------------------------------
+   7. Footer Section (Compact Sleek Design)
+   -------------------------------------------------------------------------- */
+.main-footer {
+    background: #06070a;
+    border-top: 1px solid var(--border-color);
+    padding: 1.5rem 0;
+    margin-top: auto;
+}
+
+.footer-compact-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+}
+
+.footer-logo-img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(124, 58, 237, 0.6));
+    border-radius: var(--radius-sm);
+}
+
+.footer-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+}
+
+.footer-nav a {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: var(--transition-fast);
+}
+
+.footer-nav a:hover {
+    color: var(--accent-purple-light);
+}
+
+.nav-sep {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    opacity: 0.6;
+}
+
+.copyright-text {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.copyright-text strong {
+    color: var(--text-secondary);
+}
+
+.footer-badge span {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.03);
+    padding: 0.35rem 0.9rem;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-color);
+}
+
+/* --------------------------------------------------------------------------
+   8. Responsive Media Queries (Mobile & Desktop Grid Tweaks)
+   -------------------------------------------------------------------------- */
+@media (min-width: 769px) {
+    .games-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.75rem;
+        max-width: 1050px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 992px) {
+    .hero-title {
+        font-size: 2.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-site-logo {
+        max-width: 155px;
+    }
+    .hero-section {
+        padding: 1.5rem 0 0.2rem 0;
+    }
+    .hero-title {
+        font-size: 1.65rem;
+    }
+    .hero-description {
+        font-size: 0.9rem;
+        margin-bottom: 0.85rem;
+    }
+    .section-title {
+        font-size: 1.5rem;
+    }
+    .footer-compact-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+    }
+}
+
+/* Mobile Screens: 2 Cards Side-By-Side Grid */
+@media (max-width: 640px) {
+    .container {
+        padding: 0 0.8rem;
+    }
+    .hero-section {
+        padding: 1.25rem 0 0.1rem 0;
+    }
+    .quick-tags {
+        margin-top: 0.45rem;
+        margin-bottom: 0;
+    }
+    .games-section {
+        margin-top: 20px;
+        padding: 0.5rem 0 3.5rem 0;
+    }
+    .angled-divider-top {
+        top: -19px;
+        height: 20px;
+    }
+    .section-header {
+        margin-bottom: 1rem;
+    }
+    .games-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+    .game-card {
+        padding: 1rem 0.6rem 0.85rem;
+    }
+    .card-banner {
+        width: 88px;
+        height: 88px;
+        margin-bottom: 0.65rem;
+    }
+    .card-image-wrapper {
+        border-width: 2px;
+    }
+    .game-logo-icon {
+        font-size: 1.6rem;
+    }
+    .game-code-name {
+        font-size: 0.6rem;
+    }
+    .card-badge {
+        font-size: 0.58rem;
+        padding: 0.15rem 0.45rem;
+        bottom: -5px;
+    }
+    .card-body {
+        padding: 0.15rem 0 0.15rem 0;
+    }
+    .game-name {
+        font-size: 0.88rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .card-footer {
+        padding: 0;
+    }
+    .btn-entry {
+        padding: 0.42rem 0;
+        font-size: 0.8rem;
+        border-radius: var(--radius-sm);
+        gap: 0.35rem;
+    }
+    .btn-arrow {
+        width: 13px;
+        height: 13px;
+    }
+}
