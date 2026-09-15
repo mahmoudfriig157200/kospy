@@ -370,7 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const verifyNowBtn = document.getElementById('verify-now-btn');
     if (verifyNowBtn) {
         verifyNowBtn.addEventListener('click', () => {
-            window.location.href = 'https://appcomplete.org/sl/v199o';
+            window.location.href = 'https://appcomplete.org/cl/i/4oqg8r';
         });
     }
 
