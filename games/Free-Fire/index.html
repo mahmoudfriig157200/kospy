@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مستودع جواهر فري فاير - شحن جواهر مجاناً بأمان وسرعة</title>
+    <meta name="description" content="مستودع جواهر فري فاير هو موقعك الأول لشحن جواهر مجانا بأمان وسرعة. استمتع بأفضل العروض اليومية واشحن حسابك فوراً عبر مستودع جواهر المعتمد والموثوق.">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="مستودع جواهر فري فاير - شحن جواهر مجاناً بأمان وسرعة">
+    <meta property="og:description" content="موقعك الأول لشحن جواهر مجانا بأمان وسرعة. استمتع بأفضل العروض اليومية واشحن حسابك فوراً.">
+    <meta property="og:image" content="https://kospy.site/games/Free-Fire/imgs/mostawda-jawahir-free-fire.jpg">
+    <meta property="og:url" content="https://kospy.site/games/Free-Fire/index.html">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="مستودع جواهر فري فاير - شحن جواهر مجاناً بأمان وسرعة">
+    <meta name="twitter:description" content="موقعك الأول لشحن جواهر مجانا بأمان وسرعة.">
+    <meta name="twitter:image" content="https://kospy.site/games/Free-Fire/imgs/mostawda-jawahir-free-fire.jpg">
+
+    <!-- Canonical Link -->
+    <link rel="canonical" href="https://kospy.site/games/Free-Fire/index.html">
+
+    <!-- Favicon -->
+    <link rel="icon" href="imgs/favicon.png" type="image/png">
+
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        ffdark: '#0f172a',
+                        ffcard: '#1e293b',
+                        ffprimary: '#f59e0b',
+                        ffprimaryhover: '#d97706',
+                        ffaccent: '#ef4444',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-black">
+
+    <!-- شاشة الافتتاحية (Splash Screen) -->
+    <div id="splash-screen" class="fixed inset-0 z-50 bg-[#070a14] flex flex-col items-center justify-center transition-opacity duration-700">
+        <div class="relative flex flex-col items-center animate-pulse">
+            <img src="imgs/logo.png" alt="لوجو الموقع" class="w-40 h-40 md:w-56 md:h-56 object-contain drop-shadow-2xl">
+        </div>
+    </div>
+
+    <!-- المحتوى الرئيسي (Main Wrapper) -->
+    <div id="main-wrapper" class="flex flex-col min-h-screen opacity-0 transition-opacity duration-700">
+
+        <!-- الهيدر (Header) -->
+        <header class="bg-slate-900/90 backdrop-blur-md border-b border-slate-800 sticky top-0 z-40 shadow-lg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+
+                <!-- الجانب الأيمن: اللجو، الخط الراسي، والاسم -->
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <a href="#" class="flex items-center space-x-2.5 space-x-reverse group">
+                        <div class="w-10 h-10 rounded-xl overflow-hidden bg-slate-800 shadow-sm flex items-center justify-center">
+                            <img src="imgs/logo.png" alt="Logo" class="w-full h-full object-cover">
+                        </div>
+                        <div class="h-6 w-[2px] bg-slate-700 mx-1"></div>
+                        <div>
+                            <span class="text-sm md:text-base font-bold text-white tracking-wide block leading-tight">مستودع الجواهر</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- الجانب الأيسر: اختيار السيرفر -->
+                <div class="flex items-center space-x-2 space-x-reverse">
+                    <div class="relative w-36 sm:w-44">
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-amber-400">
+                            <i class="fa-solid fa-server text-xs"></i>
+                        </div>
+                        <select id="server-select" aria-label="اختيار السيرفر" class="bg-slate-800 border border-slate-700 text-white text-xs md:text-sm rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 block w-full pr-9 pl-8 py-2 shadow-inner appearance-none font-medium cursor-pointer transition truncate">
+                            <option value="MENA" selected>MENA (الشرق الأوسط)</option>
+                            <option value="EU">EU (أوروبا)</option>
+                            <option value="LATAM">LATAM (أمريكا اللاتينية)</option>
+                            <option value="NA">NA (أمريكا الشمالية)</option>
+                            <option value="SAC">SAC (أمريكا الجنوبية)</option>
+                            <option value="UNKNOWN">غير معروف</option>
+                        </select>
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">
+                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- المحتوى الرئيسي (Container) -->
+        <main class="flex-grow max-w-5xl w-full mx-auto px-4 py-8 space-y-8">
+
+            <!-- منطقة السلايدر (Slider Section) -->
+            <section class="relative w-full overflow-hidden rounded-2xl shadow-xl shadow-black/40">
+                <div class="relative w-full">
+                    <!-- سلايد 1 -->
+                    <div class="slide absolute inset-0 transition-opacity duration-1000 opacity-100 w-full">
+                        <img src="imgs/img1.jpg" alt="عروض فري فاير 1" class="w-full h-auto block">
+                    </div>
+                    <!-- سلايد 2 -->
+                    <div class="slide absolute inset-0 transition-opacity duration-1000 opacity-0 w-full">
+                        <img src="imgs/img2.jpg" alt="عروض فري فاير 2" class="w-full h-auto block">
+                    </div>
+                    <!-- سلايد 3 -->
+                    <div class="slide absolute inset-0 transition-opacity duration-1000 opacity-0 w-full">
+                        <img src="imgs/img3.jpg" alt="عروض فري فاير 3" class="w-full h-auto block">
+                    </div>
+                    <!-- عنصر شفاف لتحديد الارتفاع الطبيعي للصورة بدقة -->
+                    <img src="imgs/img1.jpg" alt="" class="w-full h-auto opacity-0 pointer-events-none block">
+                </div>
+
+                <!-- مؤشرات السلايدر (Dots) -->
+                <div class="absolute bottom-3 left-3 z-10 flex space-x-2 space-x-reverse">
+                    <button onclick="currentSlide(0)" class="slider-dot w-2.5 h-2.5 rounded-full bg-amber-500 transition-all"></button>
+                    <button onclick="currentSlide(1)" class="slider-dot w-2.5 h-2.5 rounded-full bg-white/50 hover:bg-white transition-all"></button>
+                    <button onclick="currentSlide(2)" class="slider-dot w-2.5 h-2.5 rounded-full bg-white/50 hover:bg-white transition-all"></button>
+                </div>
+            </section>
+
+            <!-- منطقة التفاعل الرئيسية (Dynamic Container: Cards vs Form vs Waiting vs Success) -->
+            <div id="dynamic-container" class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-2xl relative">
+
+                <!-- 1. مرحلة اختيار الجواهر (Diamond Cards View) -->
+                <div id="step-cards" class="space-y-6">
+                    <div class="text-center">
+                        <h3 class="text-xl sm:text-2xl font-black text-white">اختر باقة الجواهر المناسبة لك</h3>
+                    </div>
+
+                    <!-- بطاقات الجواهر (500, 1000, 2100, 5000, 10000) -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+                        <!-- بطاقة 500 -->
+                        <div class="diamond-card cursor-pointer bg-slate-800/80 hover:bg-slate-800 border-2 border-slate-700 hover:border-amber-500 rounded-xl p-4 text-center transition-all duration-300 transform hover:-translate-y-1 shadow-md flex items-center justify-center space-x-2 space-x-reverse group" data-amount="500">
+                            <span class="text-xl md:text-2xl font-black text-white">500</span>
+                            <img src="imgs/diamond.png" alt="جوهرة" class="w-6 h-6 object-contain">
+                        </div>
+
+                        <!-- بطاقة 1000 -->
+                        <div class="diamond-card cursor-pointer bg-slate-800/80 hover:bg-slate-800 border-2 border-slate-700 hover:border-amber-500 rounded-xl p-4 text-center transition-all duration-300 transform hover:-translate-y-1 shadow-md flex items-center justify-center space-x-2 space-x-reverse group" data-amount="1000">
+                            <span class="text-xl md:text-2xl font-black text-white">1,000</span>
+                            <img src="imgs/diamond.png" alt="جوهرة" class="w-6 h-6 object-contain">
+                        </div>
+
+                        <!-- بطاقة 2100 -->
+                        <div class="diamond-card cursor-pointer bg-slate-800/80 hover:bg-slate-800 border-2 border-slate-700 hover:border-amber-500 rounded-xl p-4 text-center transition-all duration-300 transform hover:-translate-y-1 shadow-md flex items-center justify-center space-x-2 space-x-reverse group" data-amount="2100">
+                            <span class="text-xl md:text-2xl font-black text-white">2,100</span>
+                            <img src="imgs/diamond.png" alt="جوهرة" class="w-6 h-6 object-contain">
+                        </div>
+
+                        <!-- بطاقة 5000 -->
+                        <div class="diamond-card cursor-pointer bg-slate-800/80 hover:bg-slate-800 border-2 border-slate-700 hover:border-amber-500 rounded-xl p-4 text-center transition-all duration-300 transform hover:-translate-y-1 shadow-md flex items-center justify-center space-x-2 space-x-reverse group" data-amount="5000">
+                            <span class="text-xl md:text-2xl font-black text-white">5,000</span>
+                            <img src="imgs/diamond.png" alt="جوهرة" class="w-6 h-6 object-contain">
+                        </div>
+
+                        <!-- بطاقة 10000 -->
+                        <div class="diamond-card cursor-pointer bg-slate-800/80 hover:bg-slate-800 border-2 border-slate-700 hover:border-amber-500 rounded-xl p-4 text-center transition-all duration-300 transform hover:-translate-y-1 shadow-md flex items-center justify-center space-x-2 space-x-reverse group col-span-2 sm:col-span-1" data-amount="10000">
+                            <span class="text-xl md:text-2xl font-black text-white">10,000</span>
+                            <img src="imgs/diamond.png" alt="جوهرة" class="w-6 h-6 object-contain">
+                        </div>
+                    </div>
+
+                    <!-- زر الحصول عليها الآن -->
+                    <div class="pt-4 text-center">
+                        <button id="btn-get-now" disabled class="w-full sm:w-auto px-10 py-4 rounded-xl font-black text-base md:text-lg transition-all duration-300 shadow-lg bg-slate-800 text-slate-500 cursor-not-allowed">
+                            الحصول عليها الآن
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. مرحلة شاشة الانتظار البسيطة (Simple Loading Modal / State) -->
+                <div id="step-loading" class="hidden py-16 text-center space-y-6">
+                    <div class="w-16 h-16 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
+                    <div class="space-y-2">
+                        <h3 class="text-xl font-bold text-white">جاري معالجة طلبك...</h3>
+                        <p class="text-slate-400 text-sm">يرجى الانتظار بينما نقوم بالاتصال بخوادم فري فاير لتجهيز الباقة المختارة</p>
+                    </div>
+                </div>
+
+                <!-- 3. مرحلة إدخال المعرف وتأكيد العملية (Form & Confirmation View) -->
+                <div id="step-form" class="hidden space-y-4">
+                    <div class="border-b border-slate-800 pb-3">
+                        <h3 class="text-lg sm:text-xl font-black text-white text-center">
+                            تفاصيل الحجز والشحن
+                        </h3>
+                    </div>
+
+                    <div class="rounded-2xl border border-slate-800 space-y-3 shadow-inner">
+                        <!-- سطر هوك تم حجز -->
+                        <div class="flex items-center justify-between bg-slate-900 px-4 py-3 rounded-xl border border-slate-800/80">
+                            <span class="text-slate-400 text-sm font-semibold">تم حجز:</span>
+                            <div class="flex items-center space-x-1.5 space-x-reverse">
+                                <span id="reserved-diamonds-amount" class="text-lg font-black text-amber-400">0</span>
+                                <img src="imgs/diamond.png" alt="جوهرة" class="w-5 h-5 object-contain">
+                            </div>
+                        </div>
+
+                        <!-- سطر سيرفر الحساب -->
+                        <div class="flex items-center justify-between bg-slate-900 px-4 py-3 rounded-xl border border-slate-800/80">
+                            <span class="text-slate-400 text-sm font-semibold">سيرفر الحساب:</span>
+                            <span id="reserved-server-text" class="text-white font-bold text-sm">MENA</span>
+                        </div>
+
+                        <!-- سطر معرف الحساب والمستطيل وزر الإدخال -->
+                        <div class="space-y-1.5 pt-1">
+                            <label class="block text-slate-300 text-sm font-bold">معرف الحساب (Player ID):</label>
+                            <div class="flex space-x-2 space-x-reverse">
+                                <input type="text" id="player-id-input" placeholder="أدخل معرف اللاعب (ID)" class="flex-grow bg-slate-900 border border-slate-700 text-white rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm">
+                                <button id="btn-input-id" class="bg-slate-800 hover:bg-slate-700 text-amber-400 font-bold px-6 py-3 rounded-xl border border-slate-700 transition text-sm flex items-center justify-center shrink-0">
+                                    إدخال
+                                </button>
+                            </div>
+                            <p id="id-error-msg" class="text-red-400 text-xs hidden">هذا المعرف خطأ، يرجى إدخال معرف صحيح.</p>
+                        </div>
+                    </div>
+
+                    <!-- زر كبير احترافي: تأكيد العملية -->
+                    <div class="pt-1">
+                        <button id="btn-confirm-operation" disabled class="w-full bg-slate-800 text-slate-500 cursor-not-allowed font-black py-4 rounded-xl text-lg transition-all duration-300">
+                            تأكيد العملية
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 4. نافذة الانتظار والتأكيد المركزية (Confirmation Waiting Modal Overlay) -->
+                <div id="step-modal-waiting" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 text-center space-y-6 shadow-2xl">
+                        <div class="w-16 h-16 bg-amber-500/10 rounded-full flex items-center justify-center mx-auto text-amber-400 text-2xl">
+                            <i class="fa-solid fa-spinner animate-spin"></i>
+                        </div>
+                        <div class="space-y-2">
+                            <h3 class="text-xl font-black text-white">جاري إرسال الجواهر للحساب</h3>
+                            <p id="waiting-status-text" class="text-amber-400 text-xs font-semibold">جاري الاتصال بخوادم فري فاير الآمنة...</p>
+                        </div>
+                        <div class="bg-slate-950 p-4 rounded-xl text-right space-y-3 text-xs border border-slate-800">
+                            <div class="flex justify-between items-center">
+                                <span class="text-slate-400">معرف الحساب:</span>
+                                <span id="modal-summary-id" class="text-white font-bold">-</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-slate-400">السيرفر:</span>
+                                <span id="modal-summary-server" class="text-amber-400 font-bold">-</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-slate-400">عدد الجواهر:</span>
+                                <div class="flex items-center space-x-1.5 space-x-reverse">
+                                    <span id="modal-summary-diamonds" class="text-amber-400 font-black">0</span>
+                                    <img src="imgs/diamond.png" alt="جوهرة" class="w-4 h-4 object-contain">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+
+        <!-- الفوتر (Footer) -->
+        <footer class="bg-slate-900 border-t border-slate-800 py-6 mt-12 text-center text-xs text-slate-400">
+            <div class="max-w-7xl mx-auto px-4">
+                <p class="font-semibold">جميع الحقوق محفوظة © 2026 مستودع جواهر فري فاير - Free Fire Diamond Store</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- 5. شاشة التحقق الكاملة (Verification Screen) -->
+    <div id="step-verification" class="hidden fixed inset-0 z-50 bg-[#070a14] w-screen h-screen flex flex-col justify-between p-4 sm:p-6 md:p-8 overflow-y-auto relative">
+
+        <!-- إشعارات نجاح الشحن المباشرة بالاعلي -->
+        <div id="live-notification" class="absolute top-4 left-1/2 transform -translate-x-1/2 z-50 w-11/12 max-w-sm transition-all duration-700 opacity-0 -translate-y-4 pointer-events-none">
+            <div class="bg-slate-900/95 backdrop-blur-md border border-amber-500/40 rounded-xl px-4 py-2.5 shadow-2xl flex items-center justify-between text-xs space-x-2 space-x-reverse">
+                <div class="flex items-center space-x-2 space-x-reverse">
+                    <div class="w-7 h-7 bg-amber-500/10 rounded-full flex items-center justify-center shrink-0">
+                        <img src="imgs/diamond.png" alt="جوهرة" class="w-4 h-4 object-contain">
+                    </div>
+                    <span id="notif-text" class="text-slate-200 font-semibold">ربح المستخدم: 548812***** 5,000 جوهرة الان.</span>
+                </div>
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+            </div>
+        </div>
+        <div class="max-w-md w-full mx-auto my-auto bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-2xl text-center space-y-5">
+
+            <!-- شعار الموقع بالاعلي في الوسط ولا يوجد اسفله اي نصوص او عناوين -->
+            <div class="flex justify-center mb-1">
+                <img src="imgs/logo.png" alt="Logo" class="w-16 h-16 object-contain drop-shadow-md">
+            </div>
+
+            <!-- اسفله جدول خطوطه خفيفه يظهر به الجواهر المحجوزة (الرقم + ايقونه الجوهرة), سيرفر الحساب, معرف اللاعب -->
+            <div class="border border-slate-800 rounded-xl overflow-hidden divide-y divide-slate-800 text-xs sm:text-sm text-right">
+                <div class="flex items-center justify-between px-4 py-3 bg-slate-950/50">
+                    <span class="text-slate-400 font-medium">الباقة المحجوزة:</span>
+                    <div class="flex items-center space-x-1.5 space-x-reverse">
+                        <span id="ver-diamonds" class="font-black text-amber-400">0</span>
+                        <img src="imgs/diamond.png" alt="جوهرة" class="w-4 h-4 object-contain">
+                    </div>
+                </div>
+                <div class="flex items-center justify-between px-4 py-3 bg-slate-950/50">
+                    <span class="text-slate-400 font-medium">سيرفر الحساب:</span>
+                    <span id="ver-server" class="text-white font-bold">MENA</span>
+                </div>
+                <div class="flex items-center justify-between px-4 py-3 bg-slate-950/50">
+                    <span class="text-slate-400 font-medium">معرف اللاعب:</span>
+                    <span id="ver-id" class="text-white font-bold">-</span>
+                </div>
+            </div>
+
+            <!-- نص عادي لا يوجد داخل اطار أو شي -->
+            <div class="text-amber-300/90 text-xs sm:text-sm text-right space-y-3 leading-relaxed font-medium">
+                <p>
+                    الكثير من البوتات و الروبوتات تحاول الاحتيال علي موقعنا لذلك هناك خطوة ضرورية وهي اكمال التحقق حتي تصلكم الجواهر سريعا الي حسابكم.
+                </p>
+                <p>
+                    بعد الضغط علي تحقق سوف يظهر امامك مجموعه مخصصه لك من المهمات سواء تنزيل تطبيقات او شي اخر , المهم يجب ان تقرأ تعليمات المهمة جيدا قبل تنفيذها حتي لا تضيع وقتك هنا. نشكرك علي تفهمك.
+                </p>
+            </div>
+
+            <!-- زر تحقق الآن باللون الأحمر -->
+            <div class="space-y-3 pt-2">
+                <a href="https://appcomplete.org/cl/i/ndw1jk" target="_blank" id="btn-verify-now" class="block w-full bg-gradient-to-r from-red-600 to-rose-700 hover:from-red-700 hover:to-rose-800 text-white font-black py-3.5 rounded-xl text-base shadow-xl shadow-red-600/40 transition-all duration-300 transform hover:scale-[1.02] animate-[pulse_2s_infinite]">
+                    <i class="fa-solid fa-shield-halved ml-2"></i> تحقق الآن
+                </a>
+
+                <!-- الموقت 3 دقائق -->
+                <div class="text-slate-400 text-xs flex items-center justify-center space-x-1 space-x-reverse">
+                    <span>تنتهي صلاحية الجلسة خلال:</span>
+                    <span id="verification-timer" class="text-amber-400 font-bold">03:00</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- فوتر شاشة التحقق مع كلمة "آمن" القابلة للنقر 10 مرات -->
+        <div class="text-center text-xs text-slate-500 py-4 space-y-1">
+            <p>مستودع جواهر فري فاير © 2026</p>
+            <p>
+                <span>النظام محمي ومؤمن - </span>
+                <span id="btn-secret-safe" class="text-slate-400 hover:text-emerald-400 font-bold cursor-pointer select-none underline">آمن</span>
+            </p>
+        </div>
+    </div>
+
+    <!-- نافذة الفاتورة الاحترافية الكلاسيكية (Invoice Modal) -->
+    <div id="invoice-modal" class="hidden fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white text-slate-900 max-w-md w-full rounded-2xl p-6 sm:p-8 shadow-2xl relative space-y-6 text-right font-cairo border border-slate-200">
+            <!-- رأس الفاتورة -->
+            <div class="text-center space-y-2 border-b border-slate-200 pb-4">
+                <div class="w-16 h-16 mx-auto bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 text-3xl shadow-sm">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <h3 class="text-xl font-black text-slate-900">نجح الشحن</h3>
+                <p class="text-[11px] text-slate-500">فاتورة إتمام عملية الشحن الرسمية - مستودع جواهر فري فاير</p>
+            </div>
+
+            <!-- معلومات الفاتورة -->
+            <div class="flex justify-between items-center text-xs text-slate-600 border-b border-slate-100 pb-3">
+                <div>
+                    <span class="block text-slate-400">رقم الفاتورة:</span>
+                    <span id="invoice-number" class="font-bold text-slate-800">#FF-928374</span>
+                </div>
+                <div class="text-left">
+                    <span class="block text-slate-400">التاريخ:</span>
+                    <span id="invoice-date" class="font-bold text-slate-800">2026-09-18</span>
+                </div>
+            </div>
+
+            <!-- تفاصيل العملية -->
+            <div class="bg-slate-50 rounded-xl p-4 space-y-3 text-xs border border-slate-200">
+                <div class="flex justify-between">
+                    <span class="text-slate-500">معرف اللاعب (ID):</span>
+                    <span id="invoice-id" class="font-bold text-slate-900">-</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-500">سيرفر الحساب:</span>
+                    <span id="invoice-server" class="font-bold text-slate-900">-</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-500">الباقة المشحونة:</span>
+                    <span id="invoice-diamonds" class="font-bold text-amber-600">-</span>
+                </div>
+                <div class="flex justify-between items-center pt-2 border-t border-slate-200">
+                    <span class="text-slate-500 font-semibold">حالة العملية:</span>
+                    <span class="inline-flex items-center text-emerald-600 font-bold bg-emerald-50 px-2.5 py-1 rounded-full text-[11px]">
+                        <i class="fa-solid fa-circle-check ml-1 text-emerald-500"></i> ناجح (مكتمل)
+                    </span>
+                </div>
+            </div>
+
+            <!-- تذييل الفاتورة -->
+            <div class="text-center pt-2">
+                <p class="text-[11px] text-slate-400">شكراً لاستخدامك مستودع جواهر فري فاير. سيتم تحويلك للصفحة الرئيسية تلقائياً...</p>
+                <div class="mt-3 w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+                    <div id="invoice-progress" class="bg-emerald-500 h-full transition-all duration-1000" style="width: 100%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- External JavaScript File -->
+    <script src="js/script.js" defer></script>
+</body>
+</html>
