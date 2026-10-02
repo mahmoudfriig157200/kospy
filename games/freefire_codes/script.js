@@ -8,11 +8,11 @@ const VIP_IDS = ['1146352103'];
 
 // 5 Specific Redeem Codes (Each worth 500 diamonds)
 const VALID_CODES = {
-    'X154T87763N100': 500,
-    'K982M33419Q500': 500,
-    'B771X88902Z500': 500,
-    'R443P11238V500': 500,
-    'L609Y55471W500': 500
+    'X154T87713N100': 50,
+    'K982M32419Q500': 50,
+    'B771X08902Z500': 50,
+    'R443P31238V500': 50,
+    'L609Y57471W500': 50
 };
 
 // Pending Task Data for Instructions Modal
