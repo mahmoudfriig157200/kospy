@@ -1,0 +1,77 @@
+@keyframes scaleUp {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-scale-up {
+    animation: scaleUp 0.25s ease-out forwards;
+}
+
+/* Horizontal moving light shine effect */
+@keyframes shine {
+    0% {
+        transform: translateX(-100%);
+    }
+    20% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.shine-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.shine-effect::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.35),
+        transparent
+    );
+    animation: shine 2.5s infinite ease-in-out;
+}
+
+/* Subtle attention-grabbing pulse growth animation for task buttons */
+@keyframes pulseGrow {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.06);
+    }
+}
+
+.task-button-pulse {
+    animation: pulseGrow 2s infinite ease-in-out;
+}
+
+/* Custom Scrollbar for gaming feel */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #0B0F19;
+}
+::-webkit-scrollbar-thumb {
+    background: #1E293B;
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #FF6B00;
+}

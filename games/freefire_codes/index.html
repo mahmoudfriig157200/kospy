@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صندوق شحن جواهر فري فاير | احصل على مكافآتك الآن</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="صندوق شحن جواهر فري فاير المخصص للاعبين. أكمل المهام البسيطة واسترد الأكواد واحصل على جواهرك فوراً بكل سهولة وأمان.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://kospy.site/games/freefire-diamonds-box">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="صندوق شحن جواهر فري فاير">
+    <meta property="og:description" content="أكمل المهام واسترد أكواد الجواهر وشحن حسابك في فري فاير فوراً.">
+    <meta property="og:url" content="https://kospy.site/games/freefire-diamonds-box">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts: Cairo (For entire page) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        ffDark: '#0B0F19',
+                        ffCard: '#131C2E',
+                        ffCardHover: '#1E293B',
+                        ffOrange: '#FF6B00',
+                        ffGold: '#F59E0B',
+                        ffAccent: '#3B82F6',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-ffDark text-gray-100 font-cairo min-h-screen flex flex-col selection:bg-ffOrange selection:text-white">
+
+    <!-- Professional Taller Header with Subtle Shadow -->
+    <header class="sticky top-0 z-40 bg-ffDark/95 backdrop-blur-md border-b border-gray-800/80 shadow-md shadow-black/30">
+        <div class="max-w-md mx-auto px-4 py-4 flex items-center justify-between">
+
+            <!-- Brand Logo & Name (Larger & Prominent) -->
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-2xl flex items-center justify-center overflow-hidden bg-gray-900 border border-gray-800 shadow-sm">
+                    <img src="main_logo.png" alt="شعار الموقع" class="w-full h-full object-cover rounded-2xl" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <span class="hidden text-white font-bold text-sm">SJ</span>
+                </div>
+                <h1 class="font-bold text-base tracking-tight text-white m-0">صندوق الجواهر</h1>
+            </div>
+
+            <!-- Diamonds Counter & Withdraw Plus Button Inside Same Frame -->
+            <div class="flex items-center bg-gray-900/90 border border-gray-700/80 p-1.5 pl-2.5 rounded-2xl shadow-md gap-2.5">
+                <div class="flex items-center gap-2 pr-1">
+                    <div class="w-5 h-5 flex items-center justify-center">
+                        <img src="diamond.png" alt="جوهرة" class="w-5 h-5 object-contain" onerror="this.outerHTML='💎';">
+                    </div>
+                    <span id="userDiamonds" class="font-black text-ffGold text-sm tracking-wide">0</span>
+                </div>
+                <button id="openWithdrawModalBtn" class="w-8 h-8 rounded-xl bg-ffOrange hover:bg-orange-600 text-white font-bold text-lg flex items-center justify-center transition cursor-pointer shadow-sm" title="سحب الجواهر">
+                    +
+                </button>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-md mx-auto w-full px-4 py-6 flex-grow font-cairo">
+
+        <!-- Welcome Banner / User Status -->
+        <div class="bg-gradient-to-r from-indigo-900/40 via-ffCard to-blue-900/40 border border-blue-500/20 rounded-2xl p-4 mb-6 shadow-xl relative overflow-hidden">
+            <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-ffOrange/10 rounded-full blur-xl pointer-events-none"></div>
+            <div class="flex items-center justify-between gap-3">
+                <div class="min-w-0">
+                    <h2 id="accountStatusLabel" class="text-xs text-gray-400 font-medium">غير مسجل</h2>
+                    <p id="displayPlayerId" class="text-sm font-bold text-white tracking-wide mt-0.5 truncate">اضغط للتسجيل برقم المعرف</p>
+                </div>
+                <!-- Logout Button in Red Badge with Logout SVG Icon -->
+                <button id="changeIdBtn" class="inline-flex items-center gap-1.5 bg-red-600/20 hover:bg-red-600/30 text-red-400 px-3 py-2 rounded-xl border border-red-500/30 text-xs font-bold transition flex-shrink-0 whitespace-nowrap cursor-pointer shadow-sm">
+                    <svg class="w-3.5 h-3.5 inline-block flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                    <span>الخروج</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="flex bg-ffCard p-1.5 rounded-2xl border border-gray-800 mb-6 shadow-md">
+            <button data-tab="tasks" class="tab-btn flex-1 py-2.5 rounded-xl text-sm font-bold transition flex items-center justify-center gap-2 bg-ffOrange text-white shadow-md shadow-ffOrange/20">
+                <span>المهام اليومية</span>
+            </button>
+            <button data-tab="redeem" class="tab-btn flex-1 py-2.5 rounded-xl text-sm font-bold transition flex items-center justify-center gap-2 text-gray-400 hover:text-white">
+                <span>استرداد كود</span>
+            </button>
+        </div>
+
+        <!-- Tab Content: Tasks (Immersive Full Height Feel) -->
+        <div id="tasksTabContent" class="space-y-3.5 tab-content min-h-[58vh]">
+            <div class="flex items-center justify-between mb-2">
+                <h3 class="text-sm font-bold text-gray-300">المهام المتوفرة لدينا</h3>
+                <span class="text-xs text-ffGold bg-ffGold/10 px-2.5 py-1 rounded-md border border-ffGold/20 font-semibold">مكافآت فورية</span>
+            </div>
+
+            <!-- Task Card 1 (Task 1) -->
+            <div class="bg-ffCard border border-gray-800/80 rounded-2xl p-4 flex items-center justify-between hover:border-gray-700 transition shadow-lg">
+                <div class="flex items-center gap-3.5">
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center overflow-hidden flex-shrink-0">
+                        <img src="task1_img.png" alt="مهمة جدار العروض" class="w-full h-full object-cover rounded-xl" onerror="this.outerHTML='📱';">
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white">تخطي جدار مهمات واحد</h4>
+                        <p class="text-xs text-gray-400 mt-0.5">ادخل علي جدار المهمات وتخطي منه مهمتين لتصلك 1000 جوهره فورا لحسابك</p>
+                    </div>
+                </div>
+                <button onclick="openTaskInstructions(1000, 'https://appcomplete.org/cl/i/wog8ov', ['اقرأ تعليمات اي مهمة جيدا قبل ان تبدء', 'استخدم المترجم اذا كانت باللغه اخري', 'لا تحاول تغيير بلدك او خداع الموقع', 'سوف تضاف الجواهر لحسابك فورا'])" class="bg-gradient-to-r from-ffOrange to-ffGold hover:opacity-90 text-white font-black text-xs px-3.5 py-2 rounded-xl transition shadow-md shadow-ffOrange/30 cursor-pointer active:scale-95 flex items-center gap-1.5 flex-shrink-0 shine-effect task-button-pulse">
+                    <span>1000</span>
+                    <img src="diamond.png" alt="جوهرة" class="w-4 h-4 object-contain" onerror="this.outerHTML='💎';">
+                </button>
+            </div>
+
+            <!-- Task Card 2 (Task 2 - 1000 Diamonds) -->
+            <div class="bg-ffCard border border-gray-800/80 rounded-2xl p-4 flex items-center justify-between hover:border-gray-700 transition shadow-lg">
+                <div class="flex items-center gap-3.5">
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center overflow-hidden flex-shrink-0">
+                        <img src="task2_img.png" alt="قم بتحميل التطبيق و استخدامه" class="w-full h-full object-cover rounded-xl" onerror="this.outerHTML='🎮';">
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white">قم بتحميل التطبيق و استخدامه</h4>
+                        <p class="text-xs text-gray-400 mt-0.5">حمل التطبيق وسجل الدخول و ابدء رحله جمع 300 نقطه داخل التطبيق لتصلك 1000 جوهرة فورا للحساب</p>
+                    </div>
+                </div>
+                <button onclick="openTaskInstructions(1000, 'https://play.google.com/store/apps/details?id=com.mahmoudffyt.blipboonrewards&pcampaignid=web_share', ['يجب تحميل التطبيق من المتجر الرسمي', 'سجل في التطبيق او سجل دخول لحسابك', 'اجمع 300 نقطه متتاليه في التطبيق', 'سجل الدخول للتطبيق مرتين خلال 10 دقائق', 'تصفح جميع شاشات التطبيق و تعرف عليه'])" class="bg-gradient-to-r from-ffOrange to-ffGold hover:opacity-90 text-white font-black text-xs px-3.5 py-2 rounded-xl transition shadow-md shadow-ffOrange/30 cursor-pointer active:scale-95 flex items-center gap-1.5 flex-shrink-0 shine-effect task-button-pulse">
+                    <span>1000</span>
+                    <img src="diamond.png" alt="جوهرة" class="w-4 h-4 object-contain" onerror="this.outerHTML='💎';">
+                </button>
+            </div>
+        </div>
+
+        <!-- Tab Content: Redeem Code -->
+        <div id="redeemTabContent" class="space-y-4 tab-content hidden min-h-[58vh]">
+            <div class="bg-ffCard border border-gray-800 rounded-2xl p-5 shadow-xl">
+                <h3 class="text-base font-bold text-white mb-3">استرداد أكواد فري فاير</h3>
+
+                <form id="redeemForm" onsubmit="handleRedeem(event)" class="space-y-3">
+                    <div class="flex items-center gap-2">
+                        <input type="text" id="codeInput" placeholder="أدخل كود الاسترداد" required
+                            class="flex-1 bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-ffOrange transition tracking-wider uppercase font-mono">
+                        <button type="submit" class="bg-gradient-to-r from-ffOrange to-ffGold hover:opacity-90 text-white font-bold px-5 py-3 rounded-xl transition shadow-lg shadow-ffOrange/25 cursor-pointer text-sm whitespace-nowrap">
+                            استرداد
+                        </button>
+                    </div>
+                </form>
+                <div id="redeemMessage" class="mt-3 text-xs font-medium text-center hidden"></div>
+            </div>
+        </div>
+
+        <!-- SEO FAQ Section (Interactive Accordion - 9 Questions) -->
+        <section class="mt-10 pt-6 border-t border-gray-800/80">
+            <h3 class="text-sm font-bold text-white mb-4 text-center">الأسئلة الشائعة حول شحن جواهر فري فاير</h3>
+            <div class="space-y-2.5 text-xs">
+
+                <!-- FAQ Item 1 -->
+                <div class="bg-ffCard border border-gray-800/80 rounded-xl overflow-hidden shadow-md">
+                    <button onclick="toggleFaq(this)" class="w-full p-3.5 text-right flex items-center justify-between font-bold text-gray-200 hover:text-white transition cursor-pointer">
+                        <span>كيف يمكنني الحصول على جواهر فري فاير مجاناً؟</span>
+                        <svg class="w-4 h-4 text-gray-400 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="faq-content hidden px-3.5 pb-3.5 text-gray-400 leading-relaxed border-t border-gray-800/60 pt-2">
+                        يمكنك جمع الجواهر مجاناً من خلال إتمام المهام اليومية المتاحة في الموقع (مثل تحميل التطبيقات أو استطلاعات الرأي) أو عبر إدخال أكواد الاسترداد الرسمية والصحيحة.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="bg-ffCard border border-gray-800/80 rounded-xl overflow-hidden shadow-md">
+                    <button onclick="toggleFaq(this)" class="w-full p-3.5 text-right flex items-center justify-between font-bold text-gray-200 hover:text-white transition cursor-pointer">
+                        <span>ما هو الحد الأدنى لسحب الجواهر إلى حسابي؟</span>
+                        <svg class="w-4 h-4 text-gray-400 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="faq-content hidden px-3.5 pb-3.5 text-gray-400 leading-relaxed border-t border-gray-800/60 pt-2">
+                        الحد الأدنى للسحب هو 100 جوهرة. بمجرد وصول رصيدك إلى هذا الحد، يمكنك النقر على زر الإضافة (+) في الأعلى وتأكيد عملية السحب فوراً.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="bg-ffCard border border-gray-800/80 rounded-xl overflow-hidden shadow-md">
+                    <button onclick="toggleFaq(this)" class="w-full p-3.5 text-right flex items-center justify-between font-bold text-gray-200 hover:text-white transition cursor-pointer">
+                        <span>هل يتطلب شحن الجواهر إدخال كلمة المرور أو بيانات الحساب؟</span>
+                        <svg class="w-4 h-4 text-gray-400 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="faq-content hidden px-3.5 pb-3.5 text-gray-400 leading-relaxed border-t border-gray-800/60 pt-2">
+                        لا على الإطلاق. الموقع يطلب فقط معرف اللاعب (Player ID الخاص بفري فاير) ولا يطلب أبداً كلمة المرور أو أي بيانات شخصية، مما يضمن أمان حسابك بنسبة 100%.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="bg-ffCard border border-gray-800/80 rounded-xl overflow-hidden shadow-md">
+                    <button onclick="toggleFaq(this)" class="w-full p-3.5 text-right flex items-center justify-between font-bold text-gray-200 hover:text-white transition cursor-pointer">
+                        <span>كيف أجد معرف اللاعب (Player ID) الخاص بي في فري فاير؟</span>
+                        <svg class="w-4 h-4 text-gray-400 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="faq-content hidden px-3.5 pb-3.5 text-gray-400 leading-relaxed border-t border-gray-800/60 pt-2">
+                        يمكنك معرفة الـ ID الخاص بك داخل لعبة فري فاير عبر النقر على صورة ملفك الشخصي في أعلى يسار الشاشة الرئيسية، وستجده مبيناً بجانب اسمك مع زر للنسخ السريع.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="bg-ffCard border border-gray-800/80 rounded-xl overflow-hidden shadow-md">
+                    <button onclick="toggleFaq(this)" class="w-full p-3.5 text-right flex items-center justify-between font-bold text-gray-200 hover:text-white transition cursor-pointer">
+                        <span>لماذا تظهر لي رسالة خطأ عند إدخال كود الاسترداد؟</span>
+                        <svg class="w-4 h-4 text-gray-400 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="faq-content hidden px-3.5 pb-3.5 text-gray-400 leading-relaxed border-t border-gray-800/60 pt-2">
+                        قد يعود ذلك لكون الكود غير صحيح، أو منتهي الصلاحية، أو أنه تم استخدامه مسبقاً. تأكد من إدخال الكود بالأحرف والأرقام الصحيحة كما هو منشور.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 6 -->
+                <div class="bg-ffCard border border-gray-800/80 rounded-xl overflow-hidden shadow-md">
+                    <button onclick="toggleFaq(this)" class="w-full p-3.5 text-right flex items-center justify-between font-bold text-gray-200 hover:text-white transition cursor-pointer">
+                        <span>كم يستغرق وصول الجواهر إلى حسابي في فري فاير بعد طلب السحب؟</span>
+                        <svg class="w-4 h-4 text-gray-400 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="faq-content hidden px-3.5 pb-3.5 text-gray-400 leading-relaxed border-t border-gray-800/60 pt-2">
+                        تتم معالجة طلبات السحب وإصدار فاتورة المعاملة فوراً، وتصل الجواهر إلى حسابك في اللعبة خلال فترة وجيزة تتراوح بين دقائق معدودة إلى 24 ساعة كحد أقصى.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 7 -->
+                <div class="bg-ffCard border border-gray-800/80 rounded-xl overflow-hidden shadow-md">
+                    <button onclick="toggleFaq(this)" class="w-full p-3.5 text-right flex items-center justify-between font-bold text-gray-200 hover:text-white transition cursor-pointer">
+                        <span>هل هذا الموقع رسمي أو تابع لشركة غارينا (Garena)؟</span>
+                        <svg class="w-4 h-4 text-gray-400 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="faq-content hidden px-3.5 pb-3.5 text-gray-400 leading-relaxed border-t border-gray-800/60 pt-2">
+                        هذا الموقع هو منصة مستقلة للمكافآت والمهام وموجه للاعبي فري فاير، وهو غير تابع لشركتي Garena أو Free Fire الرسميتين.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 8 -->
+                <div class="bg-ffCard border border-gray-800/80 rounded-xl overflow-hidden shadow-md">
+                    <button onclick="toggleFaq(this)" class="w-full p-3.5 text-right flex items-center justify-between font-bold text-gray-200 hover:text-white transition cursor-pointer">
+                        <span>هل يمكنني استخدام أكثر من حساب أو تغيير معرف اللاعب؟</span>
+                        <svg class="w-4 h-4 text-gray-400 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="faq-content hidden px-3.5 pb-3.5 text-gray-400 leading-relaxed border-t border-gray-800/60 pt-2">
+                        نعم، يمكنك تغيير المعرف المسجل في أي وقت عبر النقر على زر "تسجيل الخروج" في لوحة التحكم العلوية واستخدام معرف جديد بكل سهولة.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 9 -->
+                <div class="bg-ffCard border border-gray-800/80 rounded-xl overflow-hidden shadow-md">
+                    <button onclick="toggleFaq(this)" class="w-full p-3.5 text-right flex items-center justify-between font-bold text-gray-200 hover:text-white transition cursor-pointer">
+                        <span>ما هي أفضل الطرق لجمع أكبر عدد من الجواهر يومياً؟</span>
+                        <svg class="w-4 h-4 text-gray-400 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="faq-content hidden px-3.5 pb-3.5 text-gray-400 leading-relaxed border-t border-gray-800/60 pt-2">
+                        ننصحك بزيارة الموقع بشكل يومي لإتمام المهام الجديدة فور توفرها، ومتابعة الأكواد الترويجية المتجددة التي يتم إضافتها باستمرار في تبويب استرداد الأكواد.
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Single-Line Copyright Footer (Right below the FAQ section inside main) -->
+        <footer class="mt-12 pt-6 border-t border-gray-800 text-center text-xs text-gray-500 font-cairo">
+            <p>© 2026 صندوق الجواهر - جميع الحقوق محفوظة.</p>
+        </footer>
+
+    </main>
+
+    <!-- Registration Modal -->
+    <div id="authModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 hidden font-cairo">
+
+        <!-- Registration Card Container with Top Overlapping Logo (main_logo.png) -->
+        <div class="bg-ffCard border border-gray-700/80 w-full max-w-sm rounded-3xl p-6 pt-16 shadow-2xl relative animate-scale-up mt-16">
+
+            <!-- Logo Icon: Half inside and half outside the card with border matching card color -->
+            <div class="absolute -top-16 left-1/2 -translate-x-1/2 w-32 h-32 flex items-center justify-center pointer-events-none overflow-hidden rounded-2xl border-4 border-ffCard bg-ffCard shadow-lg">
+                <img src="main_logo.png" alt="شعار التسجيل" class="w-full h-full object-contain rounded-2xl" onerror="this.outerHTML='FF';">
+            </div>
+
+            <div class="text-center mb-5 mt-2">
+                <h3 class="text-lg font-bold text-white">الدخول بمعرف الحساب</h3>
+            </div>
+
+            <form id="authForm" onsubmit="handleRegister(event)" class="space-y-4">
+                <div>
+                    <label for="modalPlayerId" class="block text-xs font-medium text-gray-300 mb-1.5">معرف اللاعب (Free Fire ID)</label>
+
+                    <!-- Input Container with Garena_Logo.png on the start/right -->
+                    <div class="relative flex items-center">
+                        <div class="absolute right-3.5 flex items-center justify-center pointer-events-none w-6 h-6">
+                            <img src="Garena_Logo.png" alt="جارينا فري فاير" class="w-5 h-5 object-contain" onerror="this.outerHTML='ID';">
+                        </div>
+
+                        <input type="text" id="modalPlayerId" inputmode="numeric" pattern="[0-9]{8,20}" minlength="8" maxlength="20" placeholder="مثال: 4155577711" required
+                            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                            class="w-full bg-gray-900 border border-gray-700 rounded-xl pr-12 pl-4 py-3 text-white text-sm focus:outline-none transition font-mono tracking-wider">
+                    </div>
+                    <!-- Inline error message container -->
+                    <span id="idErrorMessage" class="text-[11px] text-red-400 mt-1 block hidden">معرف خطأ, ادخل معرف صحيح</span>
+                </div>
+
+                <button type="submit" class="w-full bg-gradient-to-r from-ffOrange to-ffGold hover:opacity-90 text-white font-bold py-3 px-4 rounded-xl transition shadow-lg shadow-ffOrange/30 cursor-pointer text-sm flex items-center justify-center gap-2">
+                    <img src="Garena_Logo.png" alt="جارينا" class="w-5 h-5 object-contain" onerror="this.style.display='none';">
+                    <span>تأكيد الدخول</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Task Instructions Modal (Important Instructions - Dynamic) -->
+    <div id="taskModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 hidden font-cairo">
+        <div class="bg-ffCard border border-gray-700/80 w-full max-w-sm rounded-3xl p-6 shadow-2xl relative animate-scale-up space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-gray-800">
+                <h3 class="text-base font-bold text-white flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-ffOrange inline-block"></span>
+                    تعليمات هامة:
+                </h3>
+                <button onclick="closeTaskModal()" class="w-8 h-8 rounded-full bg-gray-800 text-gray-400 hover:text-white flex items-center justify-center transition cursor-pointer">✕</button>
+            </div>
+
+            <ul id="taskInstructionsList" class="space-y-2.5 text-xs text-gray-300 leading-relaxed list-disc list-inside font-medium pr-1">
+                <!-- Dynamically populated instructions -->
+            </ul>
+
+            <button onclick="confirmStartTask()" class="w-full bg-gradient-to-r from-ffOrange to-ffGold hover:opacity-90 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-ffOrange/30 cursor-pointer text-sm flex items-center justify-center gap-2">
+                <span>البدء الان</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Redeem Success Modal (Only 500, diamond icon, checkmark, and X close) -->
+    <div id="redeemSuccessModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 hidden font-cairo">
+        <div class="bg-ffCard border border-gray-700/80 w-full max-w-xs rounded-3xl p-6 shadow-2xl relative text-center flex items-center justify-center gap-3 animate-scale-up py-8">
+            <button onclick="closeRedeemSuccessModal()" class="absolute top-3 left-3 w-7 h-7 rounded-full bg-gray-800 text-gray-400 hover:text-white flex items-center justify-center transition cursor-pointer text-xs">✕</button>
+
+            <span class="text-3xl font-black text-ffGold">500</span>
+            <div class="w-7 h-7 inline-flex items-center justify-center">
+                <img src="diamond.png" alt="جوهرة" class="w-7 h-7 object-contain" onerror="this.outerHTML='💎';">
+            </div>
+            <div class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-base shadow-lg shadow-emerald-500/30 mr-1">
+                ✓
+            </div>
+        </div>
+    </div>
+
+    <!-- Withdrawal / Success Invoice Modal -->
+    <div id="withdrawModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 hidden font-cairo">
+        <div class="bg-ffCard border border-gray-700/80 w-full max-w-sm rounded-3xl p-6 shadow-2xl relative">
+            <div class="flex items-center justify-between mb-4 pb-3 border-b border-gray-800">
+                <h3 class="text-base font-bold text-white">سحب واسترداد الجواهر</h3>
+                <button onclick="closeWithdrawModal()" class="w-8 h-8 rounded-full bg-gray-800 text-gray-400 hover:text-white flex items-center justify-center transition">✕</button>
+            </div>
+
+            <div id="withdrawContent" class="space-y-4">
+                <div class="bg-gray-900/80 border border-gray-800 rounded-2xl p-4 text-center">
+                    <p class="text-xs text-gray-400">رصيد الجواهر الحالي</p>
+                    <div class="flex items-center justify-center gap-2 mt-1">
+                        <!-- Diamond icon: diamond.png -->
+                        <div class="w-5 h-5 inline-flex items-center justify-center">
+                            <img src="diamond.png" alt="جوهرة" class="w-5 h-5 object-contain" onerror="this.outerHTML='💎';">
+                        </div>
+                        <span class="text-2xl font-black text-ffGold" id="modalUserDiamonds">0</span>
+                        <span class="text-sm text-gray-400">جوهرة</span>
+                    </div>
+                </div>
+
+                <!-- Withdrawal Destination Card -->
+                <div class="space-y-1.5">
+                    <p class="text-xs font-medium text-gray-300">سيتم السحب إلي:</p>
+                    <div class="bg-gray-900/90 border border-gray-800 rounded-2xl p-3.5 flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-gray-800 flex items-center justify-center flex-shrink-0 border border-gray-700">
+                            <img src="Garena_Logo.png" alt="جارينا" class="w-5 h-5 object-contain" onerror="this.outerHTML='ID';">
+                        </div>
+                        <div class="min-w-0">
+                            <p class="text-[10px] text-gray-400">معرف اللاعب (Free Fire ID)</p>
+                            <p id="withdrawPlayerId" class="text-xs font-bold text-white tracking-wider font-mono truncate">---</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-2 pt-1">
+                    <label class="block text-xs font-medium text-gray-400 text-center">الحد الأدنى للسحب: 100 جوهرة</label>
+                    <button id="confirmWithdrawBtn" onclick="processWithdraw()" class="w-full bg-gradient-to-r from-emerald-600 to-emerald-500 hover:opacity-90 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-emerald-500/20 cursor-pointer text-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                        <span id="withdrawBtnText">تأكيد طلب شحن الجواهر</span>
+                        <div id="withdrawSpinner" class="w-4 h-4 border-2 border-white/35 border-t-white rounded-full animate-spin hidden"></div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Professional Invoice Card (Initially Hidden) -->
+            <div id="invoiceCard" class="hidden space-y-4">
+                <div class="text-center bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-4">
+                    <div class="w-12 h-12 bg-emerald-500 text-white rounded-full mx-auto flex items-center justify-center text-xl font-bold mb-2 shadow-lg shadow-emerald-500/30">
+                        ✓
+                    </div>
+                    <h4 class="text-base font-bold text-emerald-400">تم الشحن بنجاح</h4>
+                    <p class="text-xs text-gray-300 mt-0.5">تم إرسال الجواهر إلى حسابك في فري فاير</p>
+                </div>
+
+                <!-- Invoice Details Box -->
+                <div class="bg-gray-900 border border-gray-800 rounded-2xl p-4 space-y-2.5 text-xs font-mono">
+                    <div class="flex justify-between border-b border-gray-800 pb-2">
+                        <span class="text-gray-400">رقم المعاملة:</span>
+                        <span id="invoiceTxId" class="text-ffGold font-bold">#FF-98241</span>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-800 pb-2">
+                        <span class="text-gray-400">معرف اللاعب:</span>
+                        <span id="invoicePlayerId" class="text-white">---</span>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-800 pb-2">
+                        <span class="text-gray-400">الكمية المسحوبة:</span>
+                        <span id="invoiceAmount" class="text-ffGold font-bold">0 جوهرة</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">التاريخ والوقت:</span>
+                        <span id="invoiceDate" class="text-gray-300">---</span>
+                    </div>
+                </div>
+
+                <button onclick="closeWithdrawModal()" class="w-full bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 rounded-xl transition text-xs">
+                    إغلاق الفاتورة
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript App Logic -->
+    <script src="script.js"></script>
+</body>
+</html>
